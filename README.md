@@ -1,6 +1,6 @@
-# unreal-project-slash
+# C++ Unreal Engine Project - Slash
 
-- Working on an unreal project for fun on weekends to take a break from full-stack work and improve my C++.
+- Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 - Folling Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course.  
 
 
@@ -50,3 +50,9 @@
 
   ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/2db65602-278a-4965-8d57-85a722b0dbb8)
 
+* Creating an IK (Inverse Kinematics rig to map maximo animations to other character:
+  * Forward Kinematics (FK): In FK, you specify the rotation and position of each joint or bone in a limb directly. For example, if you're animating an arm, you would manually set the rotation of the shoulder, then the elbow, and finally the wrist. This can be cumbersome for creating natural poses.
+
+  * Inverse Kinematics (IK): In IK, you specify the position of the end effector (e.g., the hand) first, and the system calculates the rotations of the joints in the limb to reach that position. This allows for more natural and efficient posing, especially for tasks like grabbing objects or walking.
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208c5f9f-2add-4a8c-a2a2-f30631883908)
