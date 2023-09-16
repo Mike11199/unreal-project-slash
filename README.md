@@ -1,6 +1,6 @@
 # unreal-project-slash
 
-- Working on an unreal project for fun on weekends to take a break from full-stack work and work on my C++.
+- Working on an unreal project for fun on weekends to take a break from full-stack work and improve my C++.
 - Folling Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course.  
 
 
