@@ -5,6 +5,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Items/item.h"
 #include "Items/Weapons/Weapon.h"
+#include "Animation/AnimMontage.h"
 
 // Sets default values
 ASlashCharacter::ASlashCharacter()
@@ -60,6 +61,7 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
+	PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
 
 }
 
@@ -118,6 +120,32 @@ void ASlashCharacter::EKeyPressed()
 	{
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+	}
+}
+
+// chooses a random attack montage animation and plays it
+void ASlashCharacter::Attack()
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+
+	if (AnimInstance && AttackMontage) 
+	{
+		AnimInstance->Montage_Play(AttackMontage);
+		int32 Selection = FMath::RandRange(0, 1);
+
+		FName SectionName = FName();
+		switch (Selection)
+		{
+		case 0:
+			SectionName = FName("Attack1");
+			break;
+		case 1:
+			SectionName = FName("Attack2");
+			break;
+		default:
+			break;
+		}
+		AnimInstance->Montage_JumpToSection(SectionName, AttackMontage);
 	}
 }
 

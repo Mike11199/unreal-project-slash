@@ -11,6 +11,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UGroomComponent;
 class AItem;
+class UAnimMontage;
 
 UCLASS()
 class SLASH_API ASlashCharacter : public ACharacter
@@ -30,6 +31,7 @@ protected:
 	void Turn(float Value);
 	void LookUp(float Value);
 	void EKeyPressed();
+	void Attack();
 
 private:
 
@@ -49,6 +51,14 @@ private:
 
 	UPROPERTY(VisibleInstanceOnly)
 	AItem* OverlappingItem;
+
+	/*
+	* Animation montages
+	*/
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	UAnimMontage* AttackMontage;
+
+
 
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
