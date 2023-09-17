@@ -59,9 +59,11 @@
 
   
 
-* Added an IK rig to map a downloaded animation/skeleton to Echo skeleton:
+* Added an IK rig and retargeter to map a downloaded animation/skeleton to Echo skeleton.  This involved adding retarget chains manually to the skeletons of each body (the downloaded mesh with downloaded animations) and Echo character, to map corresponding body parts to one another (e.g- fingers, arms, legs).  So an animation built for one character can be used for the Echo character or adapted.
 
   ![test](https://github.com/Mike11199/unreal-project-slash/assets/91037796/93e56cc3-0040-457f-bf8b-67405600e73c)
+  ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e12a8797-7a23-4b63-949b-dc7366e9b674)
+
 
 <br />
 <br />
