@@ -56,3 +56,7 @@
   * Inverse Kinematics (IK): In IK, you specify the position of the end effector (e.g., the hand) first, and the system calculates the rotations of the joints in the limb to reach that position. This allows for more natural and efficient posing, especially for tasks like grabbing objects or walking.
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208c5f9f-2add-4a8c-a2a2-f30631883908)
+
+* Added an IK rig to map a downloaded animation/skeleton to Echo skeleton:
+
+  ![test](https://github.com/Mike11199/unreal-project-slash/assets/91037796/93e56cc3-0040-457f-bf8b-67405600e73c)
