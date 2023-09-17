@@ -57,12 +57,14 @@
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208c5f9f-2add-4a8c-a2a2-f30631883908)
 
-* C++ code for attaching sword to character mesh when overlapping with the sword's sphere mesh.  Calls superclass item.cpp's OnSphereOverlap function.
-
-![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e1aed3ce-0377-4118-b838-e920b065289b)
-
   
 
 * Added an IK rig to map a downloaded animation/skeleton to Echo skeleton:
 
   ![test](https://github.com/Mike11199/unreal-project-slash/assets/91037796/93e56cc3-0040-457f-bf8b-67405600e73c)
+
+
+  * C++ code for attaching sword to character mesh when overlapping with the sword's sphere mesh.  Calls superclass item.cpp's OnSphereOverlap function.
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e1aed3ce-0377-4118-b838-e920b065289b)
+
