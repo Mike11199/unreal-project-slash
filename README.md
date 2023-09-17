@@ -1,5 +1,7 @@
-# unreal-project-slash
-Working on an unreal project for fun
+# C++ Unreal Engine Project - Slash
+
+- Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
+- Folling Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course.  
 
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208f0130-b374-43ae-ba4a-9a366ed9be85)
@@ -47,4 +49,44 @@ Working on an unreal project for fun
   ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/04314da7-df07-4399-8318-4da1c106e5c7)
 
   ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/2db65602-278a-4965-8d57-85a722b0dbb8)
+
+* Creating an IK (Inverse Kinematics rig to map maximo animations to other character:
+  * Forward Kinematics (FK): In FK, you specify the rotation and position of each joint or bone in a limb directly. For example, if you're animating an arm, you would manually set the rotation of the shoulder, then the elbow, and finally the wrist. This can be cumbersome for creating natural poses.
+
+  * Inverse Kinematics (IK): In IK, you specify the position of the end effector (e.g., the hand) first, and the system calculates the rotations of the joints in the limb to reach that position. This allows for more natural and efficient posing, especially for tasks like grabbing objects or walking.
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208c5f9f-2add-4a8c-a2a2-f30631883908)
+
+  
+
+* Added an IK rig to map a downloaded animation/skeleton to Echo skeleton:
+
+  ![test](https://github.com/Mike11199/unreal-project-slash/assets/91037796/93e56cc3-0040-457f-bf8b-67405600e73c)
+
+<br />
+<br />
+<br />
+
+  * C++ code for attaching sword to character mesh when overlapping with the sword's sphere mesh and pressing the "E" button.  Calls superclass item.cpp's OnSphereOverlap function.
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/aaec376d-a951-40f6-98a9-5292f035a2da)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/02d9c723-545e-4be9-bb05-8f5f6328c93b)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/588c86a9-f83a-4ac6-bbb1-4f86a8671708)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/1d3b54da-de87-4254-baa7-8d11b3f91a04)
+
+<br />
+
+
+
 
