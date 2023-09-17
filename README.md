@@ -63,8 +63,25 @@
 
   ![test](https://github.com/Mike11199/unreal-project-slash/assets/91037796/93e56cc3-0040-457f-bf8b-67405600e73c)
 
+<br />
+<br />
+<br />
 
-  * C++ code for attaching sword to character mesh when overlapping with the sword's sphere mesh.  Calls superclass item.cpp's OnSphereOverlap function.
+  * C++ code for attaching sword to character mesh when overlapping with the sword's sphere mesh and pressing the "E" button.  Calls superclass item.cpp's OnSphereOverlap function.
 
-![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e1aed3ce-0377-4118-b838-e920b065289b)
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/aaec376d-a951-40f6-98a9-5292f035a2da)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/02d9c723-545e-4be9-bb05-8f5f6328c93b)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/588c86a9-f83a-4ac6-bbb1-4f86a8671708)
+
+<br />
+
+
 
