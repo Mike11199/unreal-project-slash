@@ -72,6 +72,7 @@ void ASlashCharacter::MoveForward(float Value)
 	//	AddMovementInput(Forward, Value);
 	//}
 
+	if (ActionState == EActionState::EAS_Attacking) return;
 	if ((Controller != nullptr) && (Value != 0.f)) {
 		//find out which way is forward
 		const FRotator ControlRotation = GetControlRotation();
@@ -89,7 +90,7 @@ void ASlashCharacter::MoveRight(float Value)
 	//	FVector Right = GetActorRightVector();
 	//	AddMovementInput(Right, Value);
 	//}
-
+	if (ActionState == EActionState::EAS_Attacking) return;
 	if ((Controller != nullptr) && (Value != 0.f)) {
 		//find out which way is right
 		const FRotator ControlRotation = GetControlRotation();

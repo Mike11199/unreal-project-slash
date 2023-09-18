@@ -115,7 +115,14 @@ void AItem::Tick(float DeltaTime)
 	//AddActorWorldRotation(FRotator(0.f, RotationRate * DeltaTime, 0.f));
 
 
-	RunningTime += DeltaTime;
+	RunningTime += DeltaTime;	
+
+	if (ItemState == EItemState::EIS_Hovering) 
+	{
+		AddActorWorldOffset(FVector(0.f, 0.f, TransformedSin()));
+	}
+	
+
 
 	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);  // multiply by amplitude to set wave height and multiply runningtime to speed up wave (frequency)
 	//AddActorWorldOffset(FVector(MovementRate * DeltaTime, 0.f, DeltaZ));
