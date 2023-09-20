@@ -6,6 +6,7 @@
 #include "Items/item.h"
 #include "Items/Weapons/Weapon.h"
 #include "Animation/AnimMontage.h"
+#include "Components/BoxComponent.h"
 
 // Sets default values
 ASlashCharacter::ASlashCharacter()
@@ -65,6 +66,14 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void ASlashCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type CollisionEnabled)
+{
+	if (EquippedWeapon && EquippedWeapon->GetWeaponBox()) 
+	{
+		EquippedWeapon->GetWeaponBox()->SetCollisionEnabled(CollisionEnabled);
+	}
+}
+
 void ASlashCharacter::MoveForward(float Value)
 {
 	//if ((Controller != nullptr) && (Value != 0.f)) {
@@ -117,10 +126,12 @@ void ASlashCharacter::EKeyPressed()
 {
 	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
 
-	if (OverlappingWeapon && !EquippedWeapon )
+	//!EquippedWeapon for fix
+	if (OverlappingWeapon && !EquippedWeapon ) 
 	{
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+		OverlappingItem = nullptr;
 		EquippedWeapon = OverlappingWeapon;
 	}
 	else
