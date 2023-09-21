@@ -89,7 +89,9 @@
 
 <br />
 
-* Implemented a hit interface that enemies can inherit from.  This allows the weapon class to call an actor's get hit function, by casting the actor to the hit interface.  If the cast is succesful and not null, we know the actor inherits from that interface, and can implement their own hit function.  This is useful as the wepon class doesn't need to know what it hit and define a body for getHit() for each enemy in the world.  Instead, each enemy implements their own override of the getHit function they inherit from the hit interface.  The hit interface also receives the hit location from the weapon's sphere trace, which determines the hit location and impact point.
+* Implemented a hit interface that enemies can inherit from.  This allows the weapon class to call an actor's get hit function, by casting the actor to the hit interface.  If the cast is succesful and not null, we know the actor inherits from that interface, and can implement their own hit function.  This is useful as the wepon class doesn't need to know what it hit and define a body for getHit() for each enemy in the world.
+
+* Instead, each enemy implements their own override of the getHit function they inherit from the hit interface.  The hit interface also receives the hit location from the weapon's sphere trace, which determines the hit location and impact point.
 
 <br />
 
