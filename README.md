@@ -134,3 +134,13 @@
 
 ![test_cropped](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5ef8b2dd-7c71-4610-bf32-ec01e0d7cd79)
 
+<br />
+
+* Added blood particle effects with the Cascade particle system
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/523ae020-6e42-441b-b8d2-9ec5d21025cd)
+
+<br />
+
