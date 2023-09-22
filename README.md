@@ -130,5 +130,7 @@
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/6829ddf3-9a6c-4994-96a9-18db5e39c0f7)
 
+<br />
 
+![test_cropped](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5ef8b2dd-7c71-4610-bf32-ec01e0d7cd79)
 
