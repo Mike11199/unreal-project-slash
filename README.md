@@ -102,9 +102,12 @@
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/a246ebcb-7524-443c-858c-97e1d1b95f17)
 
 <br />
-
+<br />
 
 * Used Vector Math to calculate the Dot Product between two vectors, or the angele between the impact point of a weapon strike and the enemy's forward vector (direction they are facing).  This angle (Theta) determines which hit react animation to play, so the enemy stumbles in the right direction.
+
+<br />
+
 * We also calculate the Cross Product to know if we are hit from the left or right, as the Dot Product always returns a positive value.  The Cross Product, whether it points up or down in its Z axis, is used to decide if we multiple Theta by -1, which indicates if the angle is obtuse or acute.
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/b9bab661-667a-4a2b-a9ca-7292e68dab80)
