@@ -114,6 +114,8 @@
 
 * We also calculate the Cross Product to know if we are hit from the left or right, as the Dot Product always returns a positive value.  The Cross Product, whether it points up or down in its Z axis, is used to decide if we multiple Theta by -1, which indicates if the angle is obtuse or acute.
 
+<br />
+
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/b9bab661-667a-4a2b-a9ca-7292e68dab80)
 
 <br />
