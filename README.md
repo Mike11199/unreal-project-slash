@@ -1,8 +1,12 @@
 # C++ Unreal Engine Project - Slash
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
+
+<br />
+  
 - Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
 
+<br />
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208f0130-b374-43ae-ba4a-9a366ed9be85)
 
@@ -95,8 +99,38 @@
 
 <br />
 
-![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/a246ebcb-7524-443c-858c-97e1d1b95f17)
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/8d9171e9-2c2d-49df-8c83-49b2419e5a1c)
 
 <br />
 
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/a246ebcb-7524-443c-858c-97e1d1b95f17)
+
+<br />
+<br />
+
+* Used Vector Math to calculate the Dot Product between two vectors, or the angele between the impact point of a weapon strike and the enemy's forward vector (direction they are facing).  This angle (Theta) determines which hit react animation to play, so the enemy stumbles in the right direction.
+
+<br />
+
+* We also calculate the Cross Product to know if we are hit from the left or right, as the Dot Product always returns a positive value.  The Cross Product, whether it points up or down in its Z axis, is used to decide if we multiple Theta by -1, which indicates if the angle is obtuse or acute.
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/b9bab661-667a-4a2b-a9ca-7292e68dab80)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/7f320ca8-1af6-4e7b-8566-ad993e0c3a12)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/d027736f-dd63-4ba5-a43e-02fe6c35fc11)
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/6829ddf3-9a6c-4994-96a9-18db5e39c0f7)
+
+<br />
+
+![test_cropped](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5ef8b2dd-7c71-4610-bf32-ec01e0d7cd79)
 
