@@ -134,3 +134,37 @@
 
 ![test_cropped](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5ef8b2dd-7c71-4610-bf32-ec01e0d7cd79)
 
+<br />
+
+* Added blood particle effects with the Cascade particle system
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/523ae020-6e42-441b-b8d2-9ec5d21025cd)
+
+<br />
+
+* Added Voronoi uniform fracturing to an existing mesh ( a clay pot ) so it can break on hit with a weapon.  There are multiple levels of breakage/layers or Voronoi sites, so a mesh could break progressively at different levels of damage.
+
+  <br />
+
+  ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/40e67497-c4e7-4661-8acd-de9dd34a70cc)
+
+  <br />
+
+* Then, added C++ code and blueprint nodes to create a physics field (external strain/ linear strain) which is created at the weapon's hit location, to apply a force to this destructible.  Now a weapon/sword strike will break the clay pot on hit as the destructible reacts to the physics force applied to it.
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/1aa91f93-e36e-45b5-b319-e5757337bb9c)
+
+<br />
+
+
+
+<br />
+
+ ![physics_pot_break](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5422664e-3432-4413-87ef-59e7313f7f16)
+
+
+  
