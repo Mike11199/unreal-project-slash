@@ -18,5 +18,6 @@ class SLASH_API IHitInterface
 public:
 	// - Virtual function designed to be overriden in the child class.  e.g - so sword doesn't have to know details of how a thing reacts to a hit
 	// - Otherwise a sword would need to know what was hit and call a different function for each type of object hit
-	virtual void GetHit(const FVector& ImpactPoint) = 0;
+	UFUNCTION(BlueprintNativeEvent)
+    void GetHit(const FVector& ImpactPoint);
 };

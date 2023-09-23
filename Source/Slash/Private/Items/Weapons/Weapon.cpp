@@ -83,6 +83,11 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	ActorsToIgnore.Add(this);
 	FHitResult BoxHit;
 
+	for (AActor* Actor : IgnoreActors) 
+	{
+		ActorsToIgnore.AddUnique(Actor);
+	}
+
 	UKismetSystemLibrary::BoxTraceSingle(
 		this,
 		Start,
@@ -92,7 +97,7 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		ETraceTypeQuery::TraceTypeQuery1,
 		false,
 		ActorsToIgnore,
-		EDrawDebugTrace::ForDuration,
+		EDrawDebugTrace::None,  //DEBUG SHAPE - change back to ForDuration to show or None to hide
 		BoxHit,
 		true
 	);
@@ -105,7 +110,12 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 		if (HitInterface)
 		{
 			// call get hit on the enemy's get hit function that we hit
-			HitInterface->GetHit(BoxHit.ImpactPoint); 
+			//HitInterface->GetHit(BoxHit.ImpactPoint);   //old way before getHit converted to blueprint native function
+			HitInterface->Execute_GetHit(BoxHit.GetActor(), BoxHit.ImpactPoint);
 		}
+		IgnoreActors.AddUnique(BoxHit.GetActor());
+
+		CreateFields(BoxHit.ImpactPoint);
 	}
+	
 }

@@ -3,6 +3,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Slash/DebugMacros.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 AEnemy::AEnemy()
 {
@@ -48,11 +49,31 @@ void AEnemy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
-void AEnemy::GetHit(const FVector& ImpactPoint)
+void AEnemy::GetHit_Implementation(const FVector& ImpactPoint)
 {
-	DRAW_SPHERE_COLOR(ImpactPoint, FColor::Orange)
+	//DRAW_SPHERE_COLOR(ImpactPoint, FColor::Orange)  //DEBUG SHAPE 
 	
+	DirectionalHitReact(ImpactPoint);
+	
+	if (HitSound) {
+		UGameplayStatics::PlaySoundAtLocation(
+			this,
+			HitSound,
+			ImpactPoint
+		);
+	}
+	if (HitParticles && GetWorld()) {
+		UGameplayStatics::SpawnEmitterAtLocation(
+			GetWorld(),
+			HitParticles,
+			ImpactPoint
+		);
+	}
 
+}
+
+void AEnemy::DirectionalHitReact(const FVector& ImpactPoint)
+{
 	const FVector Forward = GetActorForwardVector();
 
 	//Lower impact point to enemy actor's location Z
@@ -65,7 +86,7 @@ void AEnemy::GetHit(const FVector& ImpactPoint)
 	const double CosTheta = FVector::DotProduct(Forward, ToHit);
 
 	// take the inverse cosine (arc-cosine) of cos(theta) to get theta (in radians)
-    double Theta = FMath::Acos(CosTheta); 
+	double Theta = FMath::Acos(CosTheta);
 
 	//convert radians to degrees
 	Theta = FMath::RadiansToDegrees(Theta);
@@ -73,34 +94,35 @@ void AEnemy::GetHit(const FVector& ImpactPoint)
 	// up = hit from right; down = hit from left
 	// if CrossProduct points down, Theta should be negative.  If up, Theta should be positive
 	const FVector CrossProduct = FVector::CrossProduct(Forward, ToHit);
-	if (CrossProduct.Z < 0){
+	if (CrossProduct.Z < 0) {
 		Theta *= -1.f;
 	}
 
 	FName Section("FromBack");
 
-	if (Theta >= -45.f && Theta < 45.f){
+	if (Theta >= -45.f && Theta < 45.f) {
 		Section = FName("FromFront");
 	}
-	else if (Theta >= -135.f && Theta < -45.f){
+	else if (Theta >= -135.f && Theta < -45.f) {
 		Section = FName("FromLeft");
 	}
-	else if (Theta >= 45.f && Theta < 135.f){
+	else if (Theta >= 45.f && Theta < 135.f) {
 		Section = FName("FromRight");
 	}
 
 	PlayHitReactMontage(Section);
 
+
+	//DEBUG ARROWS
+	/*
 	UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + CrossProduct * 100.f, 4.f, FColor::Orange, 4.f);
 
-	if (GEngine){
+	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Red, FString::Printf(TEXT("Theta: %f"), Theta));
 	}
 
 	UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + Forward * 60.f, 4.f, FColor::Red, 4.f);
 	UKismetSystemLibrary::DrawDebugArrow(this, GetActorLocation(), GetActorLocation() + ToHit * 60.f, 4.f, FColor::Green, 4.f);
-
-
-
+	*/
 }
 
