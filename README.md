@@ -144,7 +144,7 @@
 
 <br />
 
-* Added Voroni uniform fracturing to an existing mesh ( a clay pot ) so it can break on hit with a weapon.  There are multiple levels of breakage/layers of voroni sites.
+* Added Voronoi uniform fracturing to an existing mesh ( a clay pot ) so it can break on hit with a weapon.  There are multiple levels of breakage/layers or Voronoi sites, so a mesh could break progressively at different levels of damage.
 
   <br />
 
@@ -152,7 +152,7 @@
 
   <br />
 
-* Then, added C++ code and blueprint nodes to create a physics field (external strain/ linear strain) which is created at the weapon's hit location, to apply a force to this destructible.  Now a weapon, sword strike will break the clay pot on hit.
+* Then, added C++ code and blueprint nodes to create a physics field (external strain/ linear strain) which is created at the weapon's hit location, to apply a force to this destructible.  Now a weapon/sword strike will break the clay pot on hit as the destructible reacts to the physics force applied to it.
 
 <br />
 
