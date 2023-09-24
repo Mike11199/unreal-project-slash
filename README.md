@@ -167,4 +167,14 @@
  ![physics_pot_break](https://github.com/Mike11199/unreal-project-slash/assets/91037796/5422664e-3432-4413-87ef-59e7313f7f16)
 
 
+ <br />
+  
+* Added treasure with Niagara particles that randomly spawns when a breakable item such as a pot breaks.  Also added to the weapon's parent C++ class.
+
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/238af4a2-a379-4d6d-8810-d67625c5a7f6)
+
+<br />
+
   
