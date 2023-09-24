@@ -112,6 +112,16 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 	// box trace fills in BoxHit with info
 	if (BoxHit.GetActor())
 	{
+
+		// APPLY DAMAGE TO TARGET
+		UGameplayStatics::ApplyDamage(
+			BoxHit.GetActor(),
+			Damage,
+			GetInstigator()->GetController(),
+			this,
+			UDamageType::StaticClass()
+		);
+
 		//if cast is succesful, then we hit an actor that implements the hit interface.  or it returns null.
 		IHitInterface* HitInterface = Cast<IHitInterface>(BoxHit.GetActor()); 
 		if (HitInterface)
@@ -124,14 +134,6 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 
 		CreateFields(BoxHit.ImpactPoint);
 
-		// APPLY DAMAGE TO TARGET
-		UGameplayStatics::ApplyDamage(
-			BoxHit.GetActor(),
-			Damage,
-			GetInstigator()->GetController(),
-			this,
-			UDamageType::StaticClass()
-			);
 	}
 	
 }
