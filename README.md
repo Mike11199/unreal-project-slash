@@ -177,4 +177,16 @@
 
 <br />
 
-  
+*Added death animations for enemies by adding various C++ classes and Blueprints.  A UAttributeComponent records the enemies health and alive state, and has a setter for damage.  The health bar widget, when it is shown and removed is determined from C++, and disappears if the player character moves a certain distance from the enemy.
+
+<br />
+
+<img src="https://github.com/Mike11199/unreal-project-slash/assets/91037796/57e0dd59-481b-4539-aa48-6b18245fabd4" alt="Image Alt Text" width="120%" >
+
+<br />
+<br />
+
+<img src="https://github.com/Mike11199/unreal-project-slash/assets/91037796/0c2553fe-bbcb-492d-919e-567445ca5e53" alt="Image Alt Text" width="80%" >
+
+
+
