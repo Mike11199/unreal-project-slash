@@ -188,5 +188,9 @@
 
 <img src="https://github.com/Mike11199/unreal-project-slash/assets/91037796/0c2553fe-bbcb-492d-919e-567445ca5e53" alt="Image Alt Text" width="80%" >
 
+<br />
+<br />
 
+![DeathAnimations3](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e9e6fd72-c176-46b2-b9cd-0069c1d7aeed)
 
+<br />
