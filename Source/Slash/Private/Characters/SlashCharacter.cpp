@@ -130,7 +130,9 @@ void ASlashCharacter::EKeyPressed()
 	//!EquippedWeapon for fix
 	if (OverlappingWeapon && !EquippedWeapon ) 
 	{
-		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
+		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"), this, this);
+		//OverlappingWeapon->SetOwner(this);
+		//OverlappingWeapon->SetInstigator(this);
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
 		OverlappingItem = nullptr;
 		EquippedWeapon = OverlappingWeapon;
