@@ -169,7 +169,7 @@
 
  <br />
   
-* Added treasure with Niagara particles that randomly spawns when a breakable item such as a pot breaks.  Also added to the weapon's parent C++ class.
+* Added treasure with red glowing ember particles swirling around it in a vortex, using the niagara particle system.  The treasure spawns a random item (which can vary in value) from the parent class generating a random integer to index into a treasure array - on breakable destruction.  Also added these particles to the weapon's parent C++ class.  This makes items easier to find in the world.  The items also disappear on sphere overlap events when they are picked up.
 
 <br />
 
