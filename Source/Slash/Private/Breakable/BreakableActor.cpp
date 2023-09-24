@@ -22,7 +22,7 @@ ABreakableActor::ABreakableActor()
 
 void ABreakableActor::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay();	
 }
 
 
@@ -33,13 +33,27 @@ void ABreakableActor::Tick(float DeltaTime)
 
 void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint)
 {
-	// spawn the treasure blueprint when the actor (breakable) gets hit
+	// spawn the treasure blueprint when the actor (breakable) gets hit (OLD WAY WHEN ONLY ONE TREASURE)
+	
+	//UWorld* World = GetWorld();
+	//if (World && TreasureClass)
+	//{
+	//	FVector Location = GetActorLocation();
+	//	Location.Z += 75.f;
+	//	World->SpawnActor<ATreasure>(TreasureClass, Location, GetActorRotation());
+	//}
+	if (bBroken) return;  // prevent infinite loop
+	bBroken = true;
 	UWorld* World = GetWorld();
-	if (World && TreasureClass)
+	if (World && TreasureClasses.Num() > 0)
 	{
-		FVector Location = GetActorLocation();
+		FVector Location = GetActorLocation();		
 		Location.Z += 75.f;
-		World->SpawnActor<ATreasure>(TreasureClass, Location, GetActorRotation());
+
+		// get random treasure
+		int32 Selection = FMath::RandRange(0, TreasureClasses.Num() - 1);
+		World->SpawnActor<ATreasure>(TreasureClasses[Selection], Location, GetActorRotation());
 	}
+
 }
 
