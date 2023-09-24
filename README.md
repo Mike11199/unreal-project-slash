@@ -177,7 +177,7 @@
 
 <br />
 
-*Added death animations for enemies by adding various C++ classes and Blueprints.  A UAttributeComponent records the enemies health and alive state, and has a setter for damage.  The health bar widget, when it is shown and removed is determined from C++, and disappears if the player character moves a certain distance from the enemy.
+*Added death animations for enemies by adding various C++ classes and Blueprints.  A UAttributeComponent records the enemies health and alive state, and has a setter for damage.  The health bar widget's visibility is determined from C++, and disappears if the player character moves a certain distance from the enemy (from calcuating the vector distances between the enemy and player in the tick function).
 
 <br />
 
