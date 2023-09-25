@@ -177,7 +177,7 @@
 
 <br />
 
-*Added death animations for enemies by adding various C++ classes and Blueprints.  A UAttributeComponent records the enemies health and alive state, and has a setter for damage.  The health bar widget, when it is shown and removed is determined from C++, and disappears if the player character moves a certain distance from the enemy.
+*Added death animations for enemies by adding various C++ classes and Blueprints.  A UAttributeComponent records the enemies health and alive state, and has a setter for damage.  The health bar widget's visibility is determined from C++, and disappears if the player character moves a certain distance from the enemy (from calcuating the vector distances between the enemy and player in the tick function).
 
 <br />
 
@@ -188,5 +188,15 @@
 
 <img src="https://github.com/Mike11199/unreal-project-slash/assets/91037796/0c2553fe-bbcb-492d-919e-567445ca5e53" alt="Image Alt Text" width="80%" >
 
+<br />
+<br />
 
+![DeathAnimations3](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e9e6fd72-c176-46b2-b9cd-0069c1d7aeed)
 
+<br />
+
+* Added a Nav Mesh Bounds to define the area where the enemy AI can move around.  A navigation mesh, or navmesh, is an abstract data structure used in artificial intelligence applications to aid agents in pathfinding through complicated spaces.  Pathfinding for the AI is then done with a graph search algorithm.
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/7343c785-97b7-4319-a762-cb0426a2990d)
+
+<br />
