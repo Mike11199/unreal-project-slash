@@ -194,3 +194,9 @@
 ![DeathAnimations3](https://github.com/Mike11199/unreal-project-slash/assets/91037796/e9e6fd72-c176-46b2-b9cd-0069c1d7aeed)
 
 <br />
+
+* Added a Nav Mesh Bounds to define the area where the enemy AI can move around.  A navigation mesh, or navmesh, is an abstract data structure used in artificial intelligence applications to aid agents in pathfinding through complicated spaces.  Pathfinding for the AI is then done with a graph search algorithm.
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/7343c785-97b7-4319-a762-cb0426a2990d)
+
+<br />
