@@ -1,3 +1,11 @@
+# Download Link
+
+- https://d29uq875pp3dr.cloudfront.net/windows.zip 
+
+- This is a 1.6 GB packaged executable file (.exe) I uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
+- To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit (I haven't programmed a menu yet to quit).
+  
+  
 # C++ Unreal Engine Project - Slash
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
