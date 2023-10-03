@@ -211,11 +211,12 @@
 
 <br />
 
-* Added and AAIController FNavPathPoints set up in C++ and BluePrint which instruct the enemies to patrol to certian areas and move around.
+* Added an AAIController class, and logic in C++ to instruct enemies to move to random patrol points on the map.
  
 <br />
 
-![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/74a01e65-dcb8-49de-be15-83cbef53c9c5)
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/f99d24a2-e657-456a-a1de-489cd84c0657)
+
 
 
 
