@@ -217,6 +217,13 @@
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/f99d24a2-e657-456a-a1de-489cd84c0657)
 
+<br />
+
+![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/4af6b73e-8a58-4e94-9e5e-074b90750e65)
+
+<br />
+
+
 
 
 
