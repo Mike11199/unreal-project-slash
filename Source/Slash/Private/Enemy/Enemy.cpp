@@ -1,13 +1,14 @@
 #include "Enemy/Enemy.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/CapsuleComponent.h"
-#include "Slash/DebugMacros.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "AttributeComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "HUD/HealthBarComponent.h"
 #include "AIController.h"
+#include "Perception/PawnSensingComponent.h"
+#include "Slash/DebugMacros.h"
 
 AEnemy::AEnemy()
 {
@@ -27,6 +28,10 @@ AEnemy::AEnemy()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
+
+	PawnSensing = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensing"));
+	PawnSensing->SightRadius = 4000.f;
+	PawnSensing->SetPeripheralVisionAngle(45.f);
 }
 
 
@@ -46,6 +51,11 @@ void AEnemy::BeginPlay()
 	EnemyController = Cast<AAIController>(GetController());
 	MoveToTarget(PatrolTarget);
 	
+	if (PawnSensing)
+	{
+		// bind callback to delegate that is executed when an enemy sees a pawn
+		PawnSensing->OnSeePawn.AddDynamic(this, &AEnemy::PawnSeen);
+	}
 }
 
 void AEnemy::Die()
@@ -141,6 +151,20 @@ AActor* AEnemy::ChoosePatrolTarget()
 	return nullptr;
 }
 
+void AEnemy::PawnSeen(APawn* SeenPawn)
+{
+	// actor tags instead of cast for performace
+	if (EnemyState == EEnemyState::EES_Chasing) return;
+	if (SeenPawn->ActorHasTag(FName("SlashCharacter")))
+	{
+		EnemyState = EEnemyState::EES_Chasing;
+		GetWorldTimerManager().ClearTimer(PatrolTimer);  // stop patrolling
+		GetCharacterMovement()->MaxWalkSpeed = 300.f;    // run when chasing
+		CombatTarget = SeenPawn;
+		MoveToTarget(CombatTarget);		
+	}
+}
+
 void AEnemy::PlayHitReactMontage(const FName& SectionName)
 {
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
@@ -156,8 +180,16 @@ void AEnemy::PlayHitReactMontage(const FName& SectionName)
 void AEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	CheckCombatTarget();
-	CheckPatrolTarget();
+
+	if (EnemyState > EEnemyState::EES_Patrolling) 
+	{
+		CheckCombatTarget();
+	}
+	else 
+	{
+		CheckPatrolTarget();
+	}	
+	
 }
 
 void AEnemy::CheckPatrolTarget()
@@ -174,11 +206,15 @@ void AEnemy::CheckCombatTarget()
 {
 	if (!InTargetRange(CombatTarget, CombatRadius))
 	{
+		// outside combat radius so should lose interest
 		CombatTarget = nullptr;
 		if (HealthBarWidget)
 		{
 			HealthBarWidget->SetVisibility(false);
 		}
+		EnemyState = EEnemyState::EES_Patrolling;
+		GetCharacterMovement()->MaxWalkSpeed = 125.f;
+		MoveToTarget(PatrolTarget);
 	}
 }
 
