@@ -225,7 +225,11 @@
 
 <br />
 
+* Added a pawn sensing component, so that an enemy can run towards a player character if they enter the enemy's field of vision.
 
+<br />
+
+  ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/f5b1a2bd-4e88-476b-a143-502785c2baa4)
 
 
 
