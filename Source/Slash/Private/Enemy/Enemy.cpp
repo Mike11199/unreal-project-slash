@@ -117,8 +117,8 @@ bool AEnemy::InTargetRange(AActor* Target, double Radius)
 {
 	if (Target == nullptr) return false;
 	const double DistanceToTarget = (Target->GetActorLocation() - GetActorLocation()).Size();
-	DRAW_SPHERE_SingleFrame(GetActorLocation());
-	DRAW_SPHERE_SingleFrame(Target->GetActorLocation());
+	// DRAW_SPHERE_SingleFrame(GetActorLocation());
+	// DRAW_SPHERE_SingleFrame(Target->GetActorLocation());
 	return DistanceToTarget <= Radius;
 }
 
@@ -161,7 +161,8 @@ void AEnemy::PawnSeen(APawn* SeenPawn)
 		GetWorldTimerManager().ClearTimer(PatrolTimer);  // stop patrolling
 		GetCharacterMovement()->MaxWalkSpeed = 300.f;    // run when chasing
 		CombatTarget = SeenPawn;
-		MoveToTarget(CombatTarget);		
+		MoveToTarget(CombatTarget);	
+		UE_LOG(LogTemp, Warning, TEXT("Pawn Seen, Chase Player"));
 	}
 }
 
@@ -215,6 +216,22 @@ void AEnemy::CheckCombatTarget()
 		EnemyState = EEnemyState::EES_Patrolling;
 		GetCharacterMovement()->MaxWalkSpeed = 125.f;
 		MoveToTarget(PatrolTarget);
+		UE_LOG(LogTemp, Warning, TEXT("Lose Interest"));
+	}
+	else if (!InTargetRange(CombatTarget, AttackRadius) && EnemyState != EEnemyState::EES_Chasing)
+	{
+		// outside attack range, so we continue to chase character
+		EnemyState = EEnemyState::EES_Chasing;
+		GetCharacterMovement()->MaxWalkSpeed = 300.f;
+		MoveToTarget(CombatTarget);
+		UE_LOG(LogTemp, Warning, TEXT("Chase Player"));
+	}
+	else if (InTargetRange(CombatTarget, AttackRadius) && EnemyState != EEnemyState::EES_Attacking)
+	{
+		// inside attack range, so attack character
+		EnemyState = EEnemyState::EES_Attacking;		
+		// TODO:  Attack montage goes here
+		UE_LOG(LogTemp, Warning, TEXT("Attack"));
 	}
 }
 
@@ -320,6 +337,9 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 		HealthBarWidget->SetHealthPercent(Attributes->GetHealthPercent());
 	}
 	CombatTarget = EventInstigator->GetPawn();
+	EnemyState = EEnemyState::EES_Chasing;
+	GetCharacterMovement()->MaxWalkSpeed = 300.f;
+	MoveToTarget(CombatTarget);
 	
 	return DamageAmount;
 }
