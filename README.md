@@ -1,11 +1,11 @@
 # Download Link
 
-- https://d29uq875pp3dr.cloudfront.net/Windows.zip
 - https://d29uq875pp3dr.cloudfront.net/Windows_v0.1.1.zip
 - https://github.com/Mike11199/unreal-project-slash/releases/tag/v.0.0.1 
 
 - This is a 1.6 GB packaged executable file (.exe) I uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
-- To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit (I haven't programmed a menu yet to quit).
+- To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit.
+- 7/28/2024 Update - Added a pause menu that can be shown by clicking the `ESCAPE` key.  Spawns an options menu to change screen size and settings (not entirely working yet).  Need to rewrite from Blueprint to actual C++.  Works well for changing app to windowed mode for performance.
   
   
 # C++ Unreal Engine Project - Slash
