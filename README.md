@@ -1,6 +1,7 @@
 # Download Link
 
 - https://d29uq875pp3dr.cloudfront.net/Windows.zip
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.1.1.zip
 - https://github.com/Mike11199/unreal-project-slash/releases/tag/v.0.0.1 
 
 - This is a 1.6 GB packaged executable file (.exe) I uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
