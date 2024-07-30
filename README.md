@@ -1,7 +1,8 @@
-# Download Link
+# Download Links
 
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.2.zip
-- https://github.com/Mike11199/unreal-project-slash/releases/tag/v.0.0.2
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.2.zip - 1.6GB
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.3.zip - 15.2GB (Adds open world to level - stil have to optimize size)
+- https://github.com/Mike11199/unreal-project-slash/releases/tag/v.0.0.2 
 
 - This is a 1.6 GB packaged executable file (.exe) I uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
 - To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit.
