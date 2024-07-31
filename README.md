@@ -1,10 +1,9 @@
 # Download Links
 
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.2.zip - 1.6GB
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.3.zip - 15.2GB (Adds open world to level - stil have to optimize size)
-- https://github.com/Mike11199/unreal-project-slash/releases/tag/v.0.0.2 
 
-- This is a 1.6 GB packaged executable file (.exe) I uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.4.zip - 4.7GB (Adds open world to level)
+
+- Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
 - To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit.
 - 7/28/2024 Update - Added a pause menu that can be shown by clicking the `ESCAPE` key.  Spawns an options menu to change screen size and settings (not entirely working yet).  Need to rewrite from Blueprint to actual C++.  Works well for changing app to windowed mode for performance.
   
@@ -13,7 +12,6 @@
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 
-  
 - Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
 
 <br />
