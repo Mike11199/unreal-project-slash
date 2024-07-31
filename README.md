@@ -1,7 +1,7 @@
 # Download Links
 
 
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.4.zip - 4.7GB (Adds open world to level)
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.5.zip - 4.7GB (Adds open world to level)
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
 - To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit.
