@@ -9,6 +9,7 @@
 #include "AIController.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Slash/DebugMacros.h"
+#include "Items/Weapons/Weapon.h"
 
 AEnemy::AEnemy()
 {
@@ -42,18 +43,26 @@ void AEnemy::PatrolTimerFinished()
 void AEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	if (HealthBarWidget) 
+	if (HealthBarWidget)
 	{
 		HealthBarWidget->SetVisibility(false);
-	}	
+	}
 
 	EnemyController = Cast<AAIController>(GetController());
 	MoveToTarget(PatrolTarget);
-	
+
 	if (PawnSensing)
 	{
 		// bind callback to delegate that is executed when an enemy sees a pawn
 		PawnSensing->OnSeePawn.AddDynamic(this, &AEnemy::PawnSeen);
+	}
+
+	UWorld* World = GetWorld();
+	if (World && WeaponClass)
+	{
+		AWeapon* DefaultWeapon = World->SpawnActor<AWeapon>(WeaponClass);
+		DefaultWeapon->Equip(GetMesh(), FName("RightHandSocket"), this, this);
+		EquippedWeapon = DefaultWeapon;
 	}
 }
 
@@ -275,5 +284,13 @@ float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AC
 	MoveToTarget(CombatTarget);
 	
 	return DamageAmount;
+}
+
+void AEnemy::Destroyed()
+{
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->Destroy();
+	}
 }
 
