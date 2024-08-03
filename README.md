@@ -8,6 +8,9 @@
   
 # C++ Unreal Engine Project - Slash
 
+![image](https://github.com/user-attachments/assets/43331cb2-a5ac-4c55-9a7d-ec1ada8bd5e4)
+
+
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 
 - Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
