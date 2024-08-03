@@ -185,6 +185,7 @@ void ASlashCharacter::FinishEquipping()
 
 void ASlashCharacter::Attack()
 {
+	Super::Attack();
 	if (CanAttack())
 	{
 		PlayAttackMontage();
@@ -203,6 +204,7 @@ bool ASlashCharacter::CanAttack()
 
 void ASlashCharacter::PlayAttackMontage()
 {
+	Super::PlayAttackMontage();
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
 	if (AnimInstance && AttackMontage)
