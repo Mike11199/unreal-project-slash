@@ -1,14 +1,15 @@
 # Download Links
 
 
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.6.zip - 4.9GB
+- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.7.zip - 4.9GB
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
-- To run, unzip the archive and simply double click the .exe file.  Press E to equip weapons, LMB to attack, and alt + f4 to exit.
-- 7/28/2024 Update - Added a pause menu that can be shown by clicking the `ESCAPE` key.  Spawns an options menu to change screen size and settings (not entirely working yet).  Need to rewrite from Blueprint to actual C++.  Works well for changing app to windowed mode for performance.
-  
+- To run, unzip the archive and simply double click the .exe file.  Press `E` to equip weapons, `LMB` to attack, and `alt + f4` to exit.  Press the `ESCAPE` key to open a pause/options menu to set game quality and resolution.
   
 # C++ Unreal Engine Project - Slash
+
+![image](https://github.com/user-attachments/assets/43331cb2-a5ac-4c55-9a7d-ec1ada8bd5e4)
+
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 
@@ -231,5 +232,8 @@
 
   ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/f5b1a2bd-4e88-476b-a143-502785c2baa4)
 
+* Implemented a BaseCharacter class which enemy and slash character inherits from.  The child classes can override functions as needed.  Added in new animations for the enemy class, states such as attacking/engaged, and attack timers.  This prevents sliding while attacking and other bad movement.
+
+![image](https://github.com/user-attachments/assets/97630967-c73e-4a97-8a6c-ad3fb22e847c)
 
 
