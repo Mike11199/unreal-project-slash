@@ -229,5 +229,8 @@
 
   ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/f5b1a2bd-4e88-476b-a143-502785c2baa4)
 
+* Implemented a BaseCharacter class which enemy and slash character inherits from.  The child classes can override functions as needed.  Added in new animations for the enemy class, states such as attacking/engaged, and attack timers.  This prevents sliding while attacking and other bad movement.
+
+![image](https://github.com/user-attachments/assets/97630967-c73e-4a97-8a6c-ad3fb22e847c)
 
 
