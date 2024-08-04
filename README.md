@@ -8,6 +8,8 @@
   
 # C++ Unreal Engine Project - Slash
 
+![image](https://github.com/user-attachments/assets/9a445fa2-0826-4c19-ac17-b84ec4bd8eb9)
+
 ![image](https://github.com/user-attachments/assets/43331cb2-a5ac-4c55-9a7d-ec1ada8bd5e4)
 
 
