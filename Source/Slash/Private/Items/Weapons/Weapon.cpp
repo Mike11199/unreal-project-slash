@@ -31,26 +31,40 @@ void AWeapon::BeginPlay()
 
 void AWeapon::Equip(USceneComponent* InParent, FName InSocketName, AActor* NewOwner, APawn* NewInstigator)
 {
+	ItemState = EItemState::EIS_Equipped;
 	SetOwner(NewOwner);
 	SetInstigator(NewInstigator);
-	AttachMeshToSocket(InParent, InSocketName);
-	ItemState = EItemState::EIS_Equipped;
-	if (EquipSound) 
+	AttachMeshToSocket(InParent, InSocketName);	
+	DisableSphereCollision();
+	PlayEquipSound();	
+	DeactivateEmbers();
+}
+
+void AWeapon::DeactivateEmbers()
+{
+	if (EmbersEffect)
+	{
+		EmbersEffect->Deactivate();
+	}
+}
+
+void AWeapon::DisableSphereCollision()
+{
+	if (Sphere)
+	{
+		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+void AWeapon::PlayEquipSound()
+{
+	if (EquipSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(
 			this,
 			EquipSound,
 			GetActorLocation()
 		);
-
-	}
-	if (Sphere) 
-	{
-		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	}
-	if (EmbersEffect)
-	{
-		EmbersEffect->Deactivate();
 	}
 }
 
@@ -61,59 +75,21 @@ void AWeapon::AttachMeshToSocket(USceneComponent* InParent, const FName& InSocke
 }
 
 
-void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-
-	//ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	//if (SlashCharacter)
-	//{
-	//	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
-	//	ItemMesh->AttachToComponent(SlashCharacter->GetMesh(), TransformRules, FName("RightHandSocket"));
-	//}
-
-}
-
-void AWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
-
-}
-
-// box trace to detect weapon overlaps
 void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	const FVector Start = BoxTraceStart->GetComponentLocation();
-	const FVector End = BoxTraceEnd->GetComponentLocation();
 
-	TArray<AActor*> ActorsToIgnore;
-	ActorsToIgnore.Add(this);
+	// enemies can't hit each other
+	if (ActorIsSameType(OtherActor)) return;
+
 	FHitResult BoxHit;
-
-	for (AActor* Actor : IgnoreActors) 
-	{
-		ActorsToIgnore.AddUnique(Actor);
-	}
-
-	UKismetSystemLibrary::BoxTraceSingle(
-		this,
-		Start,
-		End,
-		FVector(5.f, 5.f, 5.f),
-		BoxTraceStart->GetComponentRotation(),
-		ETraceTypeQuery::TraceTypeQuery1,
-		false,
-		ActorsToIgnore,
-		EDrawDebugTrace::None,  //DEBUG SHAPE - change back to ForDuration to show or None to hide
-		BoxHit,
-		true
-	);
+	BoxTrace(BoxHit);
 
 	// box trace fills in BoxHit with info
 	if (BoxHit.GetActor())
 	{
+		if (ActorIsSameType(BoxHit.GetActor())) return;
 
-		// APPLY DAMAGE TO TARGET
+		// apply damage to the target
 		UGameplayStatics::ApplyDamage(
 			BoxHit.GetActor(),
 			Damage,
@@ -122,18 +98,61 @@ void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 			UDamageType::StaticClass()
 		);
 
-		//if cast is succesful, then we hit an actor that implements the hit interface.  or it returns null.
-		IHitInterface* HitInterface = Cast<IHitInterface>(BoxHit.GetActor()); 
-		if (HitInterface)
-		{
-			// call get hit on the enemy's get hit function that we hit
-			//HitInterface->GetHit(BoxHit.ImpactPoint);   //old way before getHit converted to blueprint native function
-			HitInterface->Execute_GetHit(BoxHit.GetActor(), BoxHit.ImpactPoint);
-		}
-		IgnoreActors.AddUnique(BoxHit.GetActor());
-
+		ExecuteGetHit(BoxHit);
 		CreateFields(BoxHit.ImpactPoint);
+	}	
+}
 
+bool AWeapon::ActorIsSameType(AActor* OtherActor)
+{
+	return GetOwner()->ActorHasTag(TEXT("Enemy")) && OtherActor->ActorHasTag(TEXT("Enemy"));
+}
+
+/// <summary>
+/// Call get hit on what we hit.  
+/// If the cast is successful to <IHitInterface> than what we hit is a child of that interface.
+/// Which means we are able to call the GetHit() function on it.
+/// This prevents the weapon from needing to know what it hit.
+/// </summary>
+void AWeapon::ExecuteGetHit(FHitResult& BoxHit)
+{
+	IHitInterface* HitInterface = Cast<IHitInterface>(BoxHit.GetActor());
+	if (HitInterface)
+	{
+		HitInterface->Execute_GetHit(BoxHit.GetActor(), BoxHit.ImpactPoint);
 	}
+}
+
+/// <summary>
+/// Box trace to detect weapon overlaps.  Uses Blueprint USceneComponents for start and end positions.
+/// </summary>
+/// <param name="BoxHit"></param>
+void AWeapon::BoxTrace(FHitResult& BoxHit)
+{
+	const FVector Start = BoxTraceStart->GetComponentLocation();
+	const FVector End = BoxTraceEnd->GetComponentLocation();
+
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(this);
 	
+	for (AActor* Actor : IgnoreActors)
+	{
+		ActorsToIgnore.AddUnique(Actor);
+	}
+
+	UKismetSystemLibrary::BoxTraceSingle(
+		this,
+		Start,
+		End,
+		BoxTraceExtent,
+		BoxTraceStart->GetComponentRotation(),
+		ETraceTypeQuery::TraceTypeQuery1,
+		false,
+		ActorsToIgnore,
+		bShowBoxDebug ? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
+		BoxHit,
+		true
+	);
+
+	IgnoreActors.AddUnique(BoxHit.GetActor());
 }
