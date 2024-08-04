@@ -1,7 +1,7 @@
-# Download Links
-
+# Links
 
 - https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.8.zip - 4.9GB
+- Source Code (C++) - https://github.com/Mike11199/unreal-project-slash/tree/main/Source/Slash 
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
 - To run, unzip the archive and simply double click the .exe file.  Press `E` to equip weapons, `LMB` to attack, and `alt + f4` to exit.  Press the `ESCAPE` key to open a pause/options menu to set game quality and resolution.
