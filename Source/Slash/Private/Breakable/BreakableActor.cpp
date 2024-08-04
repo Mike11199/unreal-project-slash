@@ -31,7 +31,7 @@ void ABreakableActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint)
+void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 {
 	// spawn the treasure blueprint when the actor (breakable) gets hit (OLD WAY WHEN ONLY ONE TREASURE)
 	

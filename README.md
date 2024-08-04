@@ -1,12 +1,14 @@
-# Download Links
+# Links
 
-
-- https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.7.zip - 4.9GB
+- [Download Windows v0.0.9 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.9.zip) - 4.9 GB
+- [Source Code (C++)](Source/Slash)
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
 - To run, unzip the archive and simply double click the .exe file.  Press `E` to equip weapons, `LMB` to attack, and `alt + f4` to exit.  Press the `ESCAPE` key to open a pause/options menu to set game quality and resolution.
   
 # C++ Unreal Engine Project - Slash
+
+![image](https://github.com/user-attachments/assets/9a445fa2-0826-4c19-ac17-b84ec4bd8eb9)
 
 ![image](https://github.com/user-attachments/assets/43331cb2-a5ac-4c55-9a7d-ec1ada8bd5e4)
 
@@ -235,5 +237,14 @@
 * Implemented a BaseCharacter class which enemy and slash character inherits from.  The child classes can override functions as needed.  Added in new animations for the enemy class, states such as attacking/engaged, and attack timers.  This prevents sliding while attacking and other bad movement.
 
 ![image](https://github.com/user-attachments/assets/97630967-c73e-4a97-8a6c-ad3fb22e847c)
+
+
+* Implemented motion warping.  This allows an enemy's attacks to skew towards the player character's rotation and location  The enemy will turn towards the player during an attack and is more difficult to dodge.  This requires vector math to calculate an offset location within C++, used in a Blueprint Callable function on the attack montage's animation graph.  The function plays in response to anim notify events.
+
+![image](https://github.com/user-attachments/assets/388c2840-3cce-4d9d-bdb9-e93c2a547f42)
+
+![image](https://github.com/user-attachments/assets/55d45f93-cfe6-4aaa-85d3-2d5e10cec1e3)
+
+![image](https://github.com/user-attachments/assets/a67d1d42-4a65-4e0b-aaa0-1753ff312acc)
 
 
