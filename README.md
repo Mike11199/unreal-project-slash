@@ -1,6 +1,6 @@
 # Links
 
-- [Download Windows v0.0.8 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.8.zip) - 4.9 GB
+- [Download Windows v0.0.9 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.9.zip) - 4.9 GB
 - [Source Code (C++)](Source/Slash)
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
