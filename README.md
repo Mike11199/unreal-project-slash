@@ -18,7 +18,7 @@
 
 - Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
 
-<br />
+# Progress - From Beginning to Present
 
 ![image](https://github.com/Mike11199/unreal-project-slash/assets/91037796/208f0130-b374-43ae-ba4a-9a366ed9be85)
 
