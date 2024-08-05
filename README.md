@@ -249,3 +249,12 @@
 ![image](https://github.com/user-attachments/assets/a67d1d42-4a65-4e0b-aaa0-1753ff312acc)
 
 
+# Set HUD 
+
+* Implemented a game HUD showing health/stamina, and gold/sould count using C++.
+
+![image](https://github.com/user-attachments/assets/16617e92-30f3-46e3-a43d-deb71e633afe)
+![image](https://github.com/user-attachments/assets/7f22db5a-a64b-44c1-b696-b91ec377c5a7)
+![image](https://github.com/user-attachments/assets/110f8874-f92a-453b-bc23-f65158437680)
+
+
