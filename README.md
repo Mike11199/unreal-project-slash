@@ -251,7 +251,7 @@
 
 # Set HUD 
 
-* Implemented a game HUD showing health/stamina, and gold/soul count using C++ classes.  These inherit from the UUserWidget amd UWidgetComponent Unreal classes.
+* Implemented a game HUD showing health/stamina, and gold/soul count using C++ classes.  These inherit from the UUserWidget amd UWidgetComponent Unreal classes.  Added public functions to allow setting the HUD variables directly from C++.
 
 ![image](https://github.com/user-attachments/assets/16617e92-30f3-46e3-a43d-deb71e633afe)
 ![image](https://github.com/user-attachments/assets/7f22db5a-a64b-44c1-b696-b91ec377c5a7)
