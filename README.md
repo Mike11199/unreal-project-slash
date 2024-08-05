@@ -239,7 +239,7 @@
 ![image](https://github.com/user-attachments/assets/97630967-c73e-4a97-8a6c-ad3fb22e847c)
 
 
-* Implemented motion warping.  This allows an enmey's attacks to skew towards the player character's rotation and location  The enemy will turn towards the player during an attack and is more difficult to dodge.  This requires vector math to calculate an offset location within C++ in a Blueprint Callable function on the attack montage's animation graph.
+* Implemented motion warping.  This allows an enemy's attacks to skew towards the player character's rotation and location  The enemy will turn towards the player during an attack and is more difficult to dodge.  This requires vector math to calculate an offset location within C++, used in a Blueprint Callable function on the attack montage's animation graph.  The function plays in response to anim notify events.
 
 ![image](https://github.com/user-attachments/assets/388c2840-3cce-4d9d-bdb9-e93c2a547f42)
 
