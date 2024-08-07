@@ -266,3 +266,13 @@
 ![image](https://github.com/user-attachments/assets/110f8874-f92a-453b-bc23-f65158437680)
 
 
+# Souls Particle System
+
+- Modified the material of a planar mesh - associated with a Niagra particle system to create a warping cloud effect - for enemy soul drops.
+
+![image](https://github.com/user-attachments/assets/c3713827-20b7-4510-86b3-eb3e3ef30301)
+
+![image](https://github.com/user-attachments/assets/10277be1-40dd-46f8-ba2a-c9d8c43b1c37)
+
+
+
