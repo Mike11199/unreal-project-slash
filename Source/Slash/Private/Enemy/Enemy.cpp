@@ -8,6 +8,8 @@
 #include "Perception/PawnSensingComponent.h"
 #include "Slash/DebugMacros.h"
 #include "Items/Weapons/Weapon.h"
+#include "NavigationData.h"
+#include "Navigation/PathFollowingComponent.h"
 
 AEnemy::AEnemy()
 {

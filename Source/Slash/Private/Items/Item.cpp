@@ -3,6 +3,7 @@
 #include "Components/SphereComponent.h"
 #include "Characters/SlashCharacter.h"
 #include "NiagaraComponent.h"
+#include "Interfaces/PickupInterface.h"
 
 AItem::AItem()
 { 	
@@ -16,8 +17,8 @@ AItem::AItem()
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
 	Sphere->SetupAttachment(GetRootComponent());
 
-	EmbersEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Embers"));
-	EmbersEffect->SetupAttachment(GetRootComponent());
+	ItemEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Embers"));
+	ItemEffect->SetupAttachment(GetRootComponent());
 
 }
 
@@ -87,10 +88,10 @@ void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	//	GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
 	//}
 
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	if (SlashCharacter) 
+	IPickupInterface* PickupInterface = Cast<IPickupInterface>(OtherActor);
+	if (PickupInterface)
 	{
-		SlashCharacter->SetOverlappingItem(this);
+		PickupInterface->SetOverlappingItem(this);
 	}
 
 }
@@ -101,10 +102,10 @@ void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 	//if (GEngine) {
 	//	GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
 	//}
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	if (SlashCharacter)
+	IPickupInterface* PickupInterface = Cast<IPickupInterface>(OtherActor);
+	if (PickupInterface)
 	{
-		SlashCharacter->SetOverlappingItem(nullptr);
+		PickupInterface->SetOverlappingItem(nullptr);
 	}
 }
 

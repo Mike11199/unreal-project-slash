@@ -11,5 +11,8 @@ public class SlashTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 
 		ExtraModuleNames.AddRange( new string[] { "Slash" } );
-	}
+
+        // Set unique build environment to avoid conflict with UnrealEditor
+        bOverrideBuildEnvironment = true;
+    }
 }

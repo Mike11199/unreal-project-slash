@@ -11,5 +11,7 @@ public class SlashEditorTarget : TargetRules
 		DefaultBuildSettings = BuildSettingsVersion.V2;
 
 		ExtraModuleNames.AddRange( new string[] { "Slash" } );
-	}
+
+        bOverrideBuildEnvironment = true;
+    }
 }
