@@ -13,6 +13,7 @@ class AItem;
 class UAnimMontage;
 class USlashOverlay;
 class ASoul;
+class ATreasure;
 
 UCLASS()
 class SLASH_API ASlashCharacter : public ABaseCharacter, public IPickupInterface
@@ -28,7 +29,8 @@ public:
 	virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;	
 	/** </IHitInterface> */
 	virtual void SetOverlappingItem(AItem* Item) override;
-	virtual void AddSouls(class ASoul* Soul) override;
+	virtual void AddSouls(ASoul* Soul) override;
+	virtual void AddGold(ATreasure* Treasure) override;
 
 protected:
 	virtual void BeginPlay() override;
@@ -40,10 +42,12 @@ protected:
 	void LookUp(float Value);
 	void EKeyPressed();
 	virtual void Attack() override;
+	virtual void Dodge();
 
 	/** Combat */
 	void EquipWeapon(AWeapon* Weapon);
 	virtual void AttackEnd() override;
+	virtual void DodgeEnd() override;
 	virtual bool CanAttack() override;
 	bool CanDisarm();
 	bool CanArm();

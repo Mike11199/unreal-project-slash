@@ -11,6 +11,8 @@
 #include "HUD/SlashHUD.h"
 #include "HUD/SlashOverlay.h"
 #include "AttributeComponent.h"
+#include "Items/Soul.h"
+#include "Items/Treasure.h"
 
 
 ASlashCharacter::ASlashCharacter()
@@ -59,6 +61,7 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
 	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
 	PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
+	PlayerInputComponent->BindAction(FName("Dodge"), IE_Pressed, this, &ASlashCharacter::Dodge);
 
 }
 
@@ -94,7 +97,22 @@ void ASlashCharacter::SetOverlappingItem(AItem* Item)
 
 void ASlashCharacter::AddSouls(ASoul* Soul)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ASlashCharacter::AddSouls"));
+	//UE_LOG(LogTemp, Warning, TEXT("ASlashCharacter::AddSouls"));
+	if (Attributes && SlashOverlay)
+	{
+		Attributes->AddSouls(Soul->GetSouls());
+		SlashOverlay->SetSouls(Attributes->GetSouls());
+	}
+}
+
+void ASlashCharacter::AddGold(ATreasure* Treasure)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("ASlashCharacter::AddGold"));
+	if (Attributes && SlashOverlay)
+	{
+		Attributes->AddGold(Treasure->GetGold());
+		SlashOverlay->SetGold(Attributes->GetGold());
+	}
 }
 
 void ASlashCharacter::BeginPlay()
@@ -183,7 +201,13 @@ void ASlashCharacter::Attack()
 		PlayAttackMontage();
 		ActionState = EActionState::EAS_Attacking;
 	}
+}
 
+void ASlashCharacter::Dodge()
+{
+	if (ActionState != EActionState::EAS_Unoccupied) return;
+	PlayDodgeMontage();
+	ActionState = EActionState::EAS_Dodge;
 }
 
 void ASlashCharacter::EquipWeapon(AWeapon* Weapon)
@@ -196,6 +220,12 @@ void ASlashCharacter::EquipWeapon(AWeapon* Weapon)
 
 void ASlashCharacter::AttackEnd()
 {
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+void ASlashCharacter::DodgeEnd()
+{
+	Super::DodgeEnd();
 	ActionState = EActionState::EAS_Unoccupied;
 }
 
