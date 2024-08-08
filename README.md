@@ -5,7 +5,10 @@
 - [YouTube - Combat Test](https://www.youtube.com/watch?v=6h0NSLb7Aqw)
 
 - Releases are zip archives of a packaged executable file (.exe) I've uploaded to an Amazon S3 Bucket.  The object is provisioned with CloudFront CDN (Content Delivery Network) rather than making the bucket public (as 1TB a month bandwith is free with CloudFront).
-- To run, unzip the archive and simply double click the .exe file.  Press `E` to equip weapons, `LMB` to attack, and `alt + f4` to exit.  Press the `ESCAPE` key to open a pause/options menu to set game quality and resolution.
+- To run, unzip the archive and simply double click the `.exe` file.
+  
+- Press `E` to equip, and arm/disarm weapons, `LMB` to attack, and `RMB` to dodge.
+- Press the `ESCAPE` key to open a pause/options menu to set game quality, windowed mode, and resolution.
   
 # C++ Unreal Engine (5.3) Project - Slash
 
