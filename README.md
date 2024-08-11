@@ -291,4 +291,10 @@
 
 ![image](https://github.com/user-attachments/assets/918400da-8074-4fee-a743-5cc5bd46392d)
 
+- Implemented ragdoll physics on the insect enemy by exposing the C++ `Die()` function as a Blueprint Callable event.  Then in Blueprint, set the mesh to simulate physics.  This is made possible by also adding a physics field to the insect's skeletal mesh.
 
+  ![image](https://github.com/user-attachments/assets/79a90d71-5291-42e9-bf9b-f733aa647172)
+
+  ![image](https://github.com/user-attachments/assets/a12f4682-5e36-4ae0-b921-98ca4dd5e1f1)
+
+ 
