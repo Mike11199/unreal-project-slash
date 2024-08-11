@@ -281,8 +281,14 @@
 ![image](https://github.com/user-attachments/assets/9968cc9c-4055-4dc4-b857-094b54412852)
 
 
-# Raptor Enemy
+# New Enemies
 
 - Added a new `Raptor` enemy per the tutorial.  This was made easier by creating an animation template blueprint that enemy blueprint's can inherit from (parent to).  
 
   ![image](https://github.com/user-attachments/assets/26754398-f49b-4510-a09b-5874dd43dc0a)
+
+= Then added a new `Insect` type enemy following the same steps.
+
+![image](https://github.com/user-attachments/assets/918400da-8074-4fee-a743-5cc5bd46392d)
+
+
