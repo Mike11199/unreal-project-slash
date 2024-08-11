@@ -19,7 +19,7 @@
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 
-- Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
+- This project was started by following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course.  I completed all lectures (53 hours of video) which likely took me about 100+ hours https://www.udemy.com/certificate/UC-3fcc4637-66f1-4b14-8c67-3b7dcce3fa06/, and now plan to use it as a test bed for futher work in Unreal Engine.
 
 # Progress - From Beginning to Present
 
