@@ -249,7 +249,8 @@
 
 ![image](https://github.com/user-attachments/assets/55d45f93-cfe6-4aaa-85d3-2d5e10cec1e3)
 
-![image](https://github.com/user-attachments/assets/a67d1d42-4a65-4e0b-aaa0-1753ff312acc)
+![image](https://github.com/user-attachments/assets/62f4b1be-b2f9-4ab1-9815-633976aec15c)
+
 
 
 # Set HUD 
@@ -280,3 +281,8 @@
 ![image](https://github.com/user-attachments/assets/9968cc9c-4055-4dc4-b857-094b54412852)
 
 
+# Raptor Enemy
+
+- Added a new `Raptor` enemy per the tutorial.  This was made easier by creating an animation template blueprint that enemy blueprint's can inherit from (parent to).  
+
+  ![image](https://github.com/user-attachments/assets/26754398-f49b-4510-a09b-5874dd43dc0a)
