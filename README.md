@@ -1,6 +1,6 @@
 # Links
 
-- [Download Windows v0.0.18 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.18.zip) - 4.7 GB
+- [Download Windows v0.0.19 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.19.zip) - 4.7 GB
 - [Source Code (C++)](Source/Slash)
 - [YouTube - Combat Test](https://www.youtube.com/watch?v=6h0NSLb7Aqw)
 
@@ -19,7 +19,7 @@
 
 - Working on an Unreal Engine project for fun on the weekends to take a break from full-stack work and improve my C++.  Interests are in full-stack development, not necessarily game dev, but might be a fun hobby on the side.
 
-- Following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course and will eventually spin off from it.  
+- This project was started by following Stephen Ulibarri's Udemy course - Unreal Engine 5 C++ The Ultimate Game Developer Course.  I completed all lectures (53 hours of video) which likely took me about 100+ hours https://www.udemy.com/certificate/UC-3fcc4637-66f1-4b14-8c67-3b7dcce3fa06/, and now plan to use the levels created from the course as a test bed for futher work in Unreal Engine.
 
 # Progress - From Beginning to Present
 
@@ -281,8 +281,20 @@
 ![image](https://github.com/user-attachments/assets/9968cc9c-4055-4dc4-b857-094b54412852)
 
 
-# Raptor Enemy
+# New Enemies
 
 - Added a new `Raptor` enemy per the tutorial.  This was made easier by creating an animation template blueprint that enemy blueprint's can inherit from (parent to).  
 
   ![image](https://github.com/user-attachments/assets/26754398-f49b-4510-a09b-5874dd43dc0a)
+
+= Then added a new `Insect` type enemy following the same steps.
+
+![image](https://github.com/user-attachments/assets/918400da-8074-4fee-a743-5cc5bd46392d)
+
+- Implemented ragdoll physics on the insect enemy by exposing the C++ `Die()` function as a Blueprint Callable event.  Then in Blueprint, set the mesh to simulate physics.  This is made possible by also adding a physics field to the insect's skeletal mesh.
+
+  ![image](https://github.com/user-attachments/assets/79a90d71-5291-42e9-bf9b-f733aa647172)
+
+  ![image](https://github.com/user-attachments/assets/a12f4682-5e36-4ae0-b921-98ca4dd5e1f1)
+
+ 
