@@ -1,5 +1,51 @@
 #include "Items/Soul.h"
 #include "Interfaces/PickupInterface.h"
+#include "Kismet/KismetSystemLibrary.h"
+
+void ASoul::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	// use Desired Z calculated in BeginPlay to drift soul down towards that point
+	const double LocationZ = GetActorLocation().Z;
+
+	if (LocationZ > DesiredZ)
+	{
+		const FVector DeltaLocation = FVector(0.f, 0.f, DriftRate * DeltaTime);
+		AddActorWorldOffset(DeltaLocation);
+	}
+}
+
+void ASoul::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// trace to the ground from the soul's initial spawn position then set DesiredZ
+	const FVector Start = GetActorLocation();
+	const FVector End = Start - FVector(0.f, 0.f, 2000.f);
+
+	TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+	ObjectTypes.Add(EObjectTypeQuery::ObjectTypeQuery1);
+
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(GetOwner());
+
+	FHitResult HitResult;
+
+	UKismetSystemLibrary::LineTraceSingleForObjects(
+		this,
+		Start,
+		End,
+		ObjectTypes,
+		false,
+		ActorsToIgnore,
+		EDrawDebugTrace::None,
+		HitResult,
+		true
+	);
+
+	DesiredZ = HitResult.ImpactPoint.Z + 125.f;
+}
 
 void ASoul::OnSphereOverlap(
 	UPrimitiveComponent* OverlappedComponent,

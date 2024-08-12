@@ -54,7 +54,9 @@ void ASlashCharacter::Tick(float DeltaTime)
 	if (Attributes && SlashOverlay)
 	{
 		Attributes->RegenStamina(DeltaTime);
+		Attributes->RegenHealth(DeltaTime);
 		SlashOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
+		SlashOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
 	}
 }
 
@@ -185,8 +187,12 @@ void ASlashCharacter::EKeyPressed()
 	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
 
 	//!EquippedWeapon for fix
-	if (OverlappingWeapon && !EquippedWeapon ) 
+	if (OverlappingWeapon) 
 	{
+		if (EquippedWeapon)
+		{
+			EquippedWeapon->Destroy();
+		}
 		EquipWeapon(OverlappingWeapon);
 	}
 	else
