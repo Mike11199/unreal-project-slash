@@ -297,4 +297,11 @@
 
   ![image](https://github.com/user-attachments/assets/a12f4682-5e36-4ae0-b921-98ca4dd5e1f1)
 
- 
+
+# Post Udemy Course Completion Work - Add Water Body
+
+- Added a water body to the open world map using the Unreal Engine water simulation system.
+
+![image](https://github.com/user-attachments/assets/849c9550-d5f2-4b6b-af07-54285401e001)
+
+
