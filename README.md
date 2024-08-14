@@ -305,4 +305,12 @@
 
 ![image](https://github.com/user-attachments/assets/849c9550-d5f2-4b6b-af07-54285401e001)
 
+- Added a main menu with a submenu widget to start the game from (still WIP).
+
+![image](https://github.com/user-attachments/assets/f9fc6d3c-4fdf-4ab9-a001-2ac546d93dc5)
+
+
+
+
+
 
