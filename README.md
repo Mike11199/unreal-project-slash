@@ -1,6 +1,6 @@
 # Links
 
-- [Download Windows v0.0.20 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.20.zip) - 4.7 GB
+- [Download Windows v0.0.21 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.21.zip) - 4.7 GB
 - [Source Code (C++)](Source/Slash)
 - [YouTube - Motion Warp Combat Test](https://www.youtube.com/watch?v=6h0NSLb7Aqw)
 - [YouTube - Open World Test](https://www.youtube.com/watch?v=PBDxkQ_RZNg)
