@@ -13,6 +13,9 @@
 #include "AttributeComponent.h"
 #include "Items/Soul.h"
 #include "Items/Treasure.h"
+#include "EnhancedInputSubsystems.h"
+#include "EnhancedInputComponent.h"
+#include "Components/InputComponent.h"
 
 
 ASlashCharacter::ASlashCharacter()
@@ -64,7 +67,15 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ASlashCharacter::MoveForward);
+	
+	// enhanced input
+	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Move);
+	}
+
+	// old input bindings
+	//PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ASlashCharacter::MoveForward);
 	PlayerInputComponent->BindAxis(FName("MoveRight"), this, &ASlashCharacter::MoveRight);
 	PlayerInputComponent->BindAxis(FName("Turn"), this, &ASlashCharacter::Turn);
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUp);
@@ -130,28 +141,45 @@ void ASlashCharacter::BeginPlay()
 {
 	Super::BeginPlay();	
 	Tags.Add(FName("EngageableTarget"));
-
 	InitializeSlashOverlay();
-}
-
-void ASlashCharacter::MoveForward(float Value)
-{
-	//if ((Controller != nullptr) && (Value != 0.f)) {
-	//	FVector Forward = GetActorForwardVector();
-	//	AddMovementInput(Forward, Value);
-	//}
-
-	if (ActionState != EActionState::EAS_Unoccupied) return;
-	if ((Controller != nullptr) && (Value != 0.f)) {
-		//find out which way is forward
-		const FRotator ControlRotation = GetControlRotation();
-		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
-
-		//returns vector representing what direction controller is looking in
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+	
+	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	{		
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(CharacterMappingContext, 0);
+		}
 	}
 }
+
+void ASlashCharacter::Move(const FInputActionValue& Value)
+{
+	if (ActionState != EActionState::EAS_Unoccupied) return;
+	const float DirectionValue = Value.Get<float>();
+	if ((Controller != nullptr) && DirectionValue != 0.f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("IA_Move triggered"));
+		const FRotator ControlRotation = GetControlRotation();
+		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, DirectionValue);
+	}
+}
+
+// DEPRECATED - Old input binding before enhanced input
+//void ASlashCharacter::MoveForward(float Value)
+//{
+//	if (ActionState != EActionState::EAS_Unoccupied) return;
+//	if ((Controller != nullptr) && (Value != 0.f)) {
+//		//find out which way is forward
+//		const FRotator ControlRotation = GetControlRotation();
+//		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
+//
+//		//returns vector representing what direction controller is looking in
+//		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+//		AddMovementInput(Direction, Value);
+//	}
+//}
 
 void ASlashCharacter::MoveRight(float Value)
 {

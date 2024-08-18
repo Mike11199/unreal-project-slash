@@ -4,6 +4,7 @@
 #include "BaseCharacter.h"
 #include "CharacterTypes.h"
 #include "Interfaces/PickupInterface.h"
+#include "InputActionValue.h"
 #include "SlashCharacter.generated.h"
 
 class USpringArmComponent;
@@ -14,6 +15,8 @@ class UAnimMontage;
 class USlashOverlay;
 class ASoul;
 class ATreasure;
+class UInputMappingContext;
+class UInputAction;
 
 UCLASS()
 class SLASH_API ASlashCharacter : public ABaseCharacter, public IPickupInterface
@@ -36,8 +39,17 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	/** Callbacks for input */
-	void MoveForward(float Value);
+	/** Input Mapping Context - ENHANCED INPUT*/
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputMappingContext* CharacterMappingContext;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
+	UInputAction* MoveAction;
+
+	void Move(const FInputActionValue& Value);
+
+	/** Callbacks for input - OLD NON ENHANCED INPUT DEPRECATED*/
+	//void MoveForward(float Value);
 	void MoveRight(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
