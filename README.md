@@ -1,6 +1,6 @@
 # Links
 
-- [Download Windows v0.0.23 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.23.zip) - 4.8 GB
+- [Download Windows v0.0.24 Zip File](https://d29uq875pp3dr.cloudfront.net/Windows_v0.0.24.zip) - 5.2 GB
 - [Source Code (C++)](Source/Slash)
 - [YouTube - Motion Warp Combat Test](https://www.youtube.com/watch?v=6h0NSLb7Aqw)
 - [YouTube - Open World Test](https://www.youtube.com/watch?v=PBDxkQ_RZNg)
@@ -312,8 +312,4 @@
 - Apply linear interpolation between a base texture, and a base texture color variation - using the alpha from a macro variation texture - to reduce texture tiling across the open world map.  Then removed this as it looked bad.
 
 ![image](https://github.com/user-attachments/assets/d36a53fa-32a0-4f53-8dc3-282d62f6b607)
-
-
-
-
 
