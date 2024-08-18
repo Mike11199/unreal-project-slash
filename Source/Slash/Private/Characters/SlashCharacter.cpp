@@ -66,25 +66,28 @@ void ASlashCharacter::Tick(float DeltaTime)
 void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 	
-	// enhanced input
+	// bind enhanced input actions set in blueprint of character to functions
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Move);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Look);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Jump);
+		EnhancedInputComponent->BindAction(EKeyAction, ETriggerEvent::Triggered, this, &ASlashCharacter::EKeyPressed);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Attack);
+		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Dodge);
 	}
 
-	// old input bindings
+	// old input bindings - DEPRECATED
 	//PlayerInputComponent->BindAxis(FName("MoveForward"), this, &ASlashCharacter::MoveForward);
-	PlayerInputComponent->BindAxis(FName("MoveRight"), this, &ASlashCharacter::MoveRight);
-	PlayerInputComponent->BindAxis(FName("Turn"), this, &ASlashCharacter::Turn);
-	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUp);
+	//PlayerInputComponent->BindAxis(FName("MoveRight"), this, &ASlashCharacter::MoveRight);
+	/*PlayerInputComponent->BindAxis(FName("Turn"), this, &ASlashCharacter::Turn);*/
+	/*PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUp);*/
 
-	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
-	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
-	PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
-	PlayerInputComponent->BindAction(FName("Dodge"), IE_Pressed, this, &ASlashCharacter::Dodge);
-
+	//PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
+	//PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
+	//PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
+	//PlayerInputComponent->BindAction(FName("Dodge"), IE_Pressed, this, &ASlashCharacter::Dodge);
 }
 
 void ASlashCharacter::Jump()
@@ -143,6 +146,7 @@ void ASlashCharacter::BeginPlay()
 	Tags.Add(FName("EngageableTarget"));
 	InitializeSlashOverlay();
 	
+	// set up enhanced input by adding mapping context (set up in blueprint).
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{		
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -152,17 +156,34 @@ void ASlashCharacter::BeginPlay()
 	}
 }
 
+// enhanced input function
 void ASlashCharacter::Move(const FInputActionValue& Value)
 {
 	if (ActionState != EActionState::EAS_Unoccupied) return;
-	const float DirectionValue = Value.Get<float>();
-	if ((Controller != nullptr) && DirectionValue != 0.f)
+
+	if ((Controller != nullptr))
 	{
 		UE_LOG(LogTemp, Warning, TEXT("IA_Move triggered"));
-		const FRotator ControlRotation = GetControlRotation();
-		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, DirectionValue);
+
+		const FVector2D MovementVector = Value.Get<FVector2D>();
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
+
+		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(ForwardDirection, MovementVector.Y);
+
+		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(RightDirection, MovementVector.X);
+	}
+}
+
+void ASlashCharacter::Look(const FInputActionValue& Value)
+{
+	const FVector2D LookAxisValue = Value.Get<FVector2D>();
+	if (GetController())
+	{
+		AddControllerYawInput(LookAxisValue.X);
+		AddControllerPitchInput(LookAxisValue.Y);
 	}
 }
 
@@ -181,34 +202,35 @@ void ASlashCharacter::Move(const FInputActionValue& Value)
 //	}
 //}
 
-void ASlashCharacter::MoveRight(float Value)
-{
-	//if ((Controller != nullptr) && (Value != 0.f)) {
-	//	FVector Right = GetActorRightVector();
-	//	AddMovementInput(Right, Value);
-	//}
-	if (ActionState != EActionState::EAS_Unoccupied) return;
-	if ((Controller != nullptr) && (Value != 0.f)) {
-		//find out which way is right
-		const FRotator ControlRotation = GetControlRotation();
-		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
+// DEPRECATED - Old input binding before enhanced input
+//void ASlashCharacter::MoveRight(float Value)
+//{
+//	//if ((Controller != nullptr) && (Value != 0.f)) {
+//	//	FVector Right = GetActorRightVector();
+//	//	AddMovementInput(Right, Value);
+//	//}
+//	if (ActionState != EActionState::EAS_Unoccupied) return;
+//	if ((Controller != nullptr) && (Value != 0.f)) {
+//		//find out which way is right
+//		const FRotator ControlRotation = GetControlRotation();
+//		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
+//
+//		//returns vector representing what direction controller is looking in
+//		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+//		AddMovementInput(Direction, Value);
+//	}
+//
+//}
 
-		//returns vector representing what direction controller is looking in
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		AddMovementInput(Direction, Value);
-	}
-
-}
-
-void ASlashCharacter::Turn(float Value)
-{
-	AddControllerYawInput(Value);
-}
-
-void ASlashCharacter::LookUp(float Value)
-{
-	AddControllerPitchInput(-Value);
-}
+//void ASlashCharacter::Turn(float Value)
+//{
+//	AddControllerYawInput(Value);
+//}
+//
+//void ASlashCharacter::LookUp(float Value)
+//{
+//	AddControllerPitchInput(-Value);
+//}
 
 void ASlashCharacter::EKeyPressed()
 {
