@@ -307,9 +307,7 @@
 
 - Added a main menu with a submenu widget to start the game from (still WIP).
   
-![image](https://github.com/user-attachments/assets/f9fc6d3c-4fdf-4ab9-a001-2ac546d93dc5)
 ![image](https://github.com/user-attachments/assets/55ff62ea-bf51-4933-a294-58d7874a314d)
-
 
 - Apply linear interpolation between a base texture, and a base texture color variation - using the alpha from a macro variation texture - to reduce texture tiling across the open world map.  Then removed this as it looked bad.
 
