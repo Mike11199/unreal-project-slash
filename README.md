@@ -309,7 +309,7 @@
 
 ![image](https://github.com/user-attachments/assets/f9fc6d3c-4fdf-4ab9-a001-2ac546d93dc5)
 
-- Apply linear interpolation between a base texture, and a base texture color variation - using the alpha from a macro variation texture - to reduce texture tiling across the open world map.
+- Apply linear interpolation between a base texture, and a base texture color variation - using the alpha from a macro variation texture - to reduce texture tiling across the open world map.  Then removed this as it looked bad.
 
 ![image](https://github.com/user-attachments/assets/d36a53fa-32a0-4f53-8dc3-282d62f6b607)
 
